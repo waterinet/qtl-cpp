@@ -12,7 +12,7 @@ namespace http {
 using std::string;
 using boost::asio::ip::tcp;
 
-Client::Client() : ios_(), resolver_(ios_) {
+Client::Client() {
 }
 
 boost::shared_ptr<Response> Client::Do(boost::shared_ptr<Request> req, Error& err) {
@@ -36,8 +36,9 @@ boost::shared_ptr<Response> Client::Do(boost::shared_ptr<Request> req, Error& er
 		service = "http";
 	}
 	boost::system::error_code ec;
+	tcp::resolver resolver(ios_);
 	tcp::resolver::query query(host, service);
-	tcp::resolver::iterator endpoint_iterator = resolver_.resolve(query, ec);
+	tcp::resolver::iterator endpoint_iterator = resolver.resolve(query, ec);
 	if (ec) {
 		err = Error("fail to resolve host: " + ec.message());
 		return boost::shared_ptr<Response>();

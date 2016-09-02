@@ -42,6 +42,7 @@ boost::shared_ptr<Request> NewRequest(const std::string& method, const std::stri
 	    req->body = buf;
 	}
 
+	err = errors::Error();
 	return req;
 }
 

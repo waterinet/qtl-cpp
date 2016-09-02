@@ -8,7 +8,6 @@
 #include "qtl/errors/error.h"
 
 #include <boost/asio/io_service.hpp>
-#include <boost/asio/ip/tcp.hpp>
 
 namespace qtl {
 namespace net {
@@ -27,7 +26,6 @@ public:
 private:
 
     boost::asio::io_service ios_;
-    boost::asio::ip::tcp::resolver resolver_;
 };
 
 } // namespace http
