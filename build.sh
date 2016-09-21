@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd ./lib
+mkdir -p lib
+cd lib
 
 gcc -c -I../include \
     ../src/net/http/client.cc \
@@ -10,7 +11,7 @@ gcc -c -I../include \
 	../src/net/url/url.cc
 
 ar rcs libqtl-dep.a client.o header.o request.o response.o url.o
-ar -M <<EOF
+ar -M << EOF
     create libqtl.a
 	addlib libqtl-dep.a
 	addlib /usr/lib64/libboost_system-mt.a
